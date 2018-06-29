@@ -14,8 +14,8 @@ jobs:
       - run:
           name: Push image to Docker Hub
           command: |
-          docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-          docker push adobe/commerce-cif-ci-env:latest
+            docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+            docker push adobe/commerce-cif-ci-env:latest
 
   build_tag:
     working_directory: /app
@@ -31,8 +31,8 @@ jobs:
       - run:
           name: Push image to Docker Hub
           command: |
-          docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-          docker push adobe/commerce-cif-ci-env:$CIRCLE_TAG
+            docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+            docker push adobe/commerce-cif-ci-env:$CIRCLE_TAG
 
 workflows:
   version: 2
