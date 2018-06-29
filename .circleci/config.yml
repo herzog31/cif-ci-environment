@@ -11,6 +11,11 @@ jobs:
           name: Build Docker image (Latest)
           command: |
             docker build -t adobe/commerce-cif-ci-env:latest .
+      - run:
+          name: Push image to Docker Hub
+          command: |
+          docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+          docker push adobe/commerce-cif-ci-env:latest
 
   build_tag:
     working_directory: /app
@@ -23,6 +28,11 @@ jobs:
           name: Build Docker image (Tag)
           command: |
             docker build -t adobe/commerce-cif-ci-env:$CIRCLE_TAG .
+      - run:
+          name: Push image to Docker Hub
+          command: |
+          docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+          docker push adobe/commerce-cif-ci-env:$CIRCLE_TAG
 
 workflows:
   version: 2
