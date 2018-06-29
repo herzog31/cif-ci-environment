@@ -7,8 +7,6 @@ jobs:
     steps:
       - checkout
       - setup_remote_docker
-          docker_layer_caching: true
-          docker_version: 17.09.0-ce
       - run:
           name: Build application Docker image
           command: |
