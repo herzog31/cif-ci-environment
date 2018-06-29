@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  build:
+  build_latest:
     working_directory: /app
     docker:
       - image: docker:17.09.0-ce
@@ -8,6 +8,32 @@ jobs:
       - checkout
       - setup_remote_docker
       - run:
-          name: Build application Docker image
+          name: Build Docker image
           command: |
-            docker build -t adobe/commerce-cif-ci-env .
+            docker build -t adobe/commerce-cif-ci-env:latest .
+
+  build_tag:
+    working_directory: /app
+    docker:
+      - image: docker:17.09.0-ce
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: Build Docker image
+          command: |
+            docker build -t adobe/commerce-cif-ci-env:${CIRCLE_TAG} .
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - build_latest:
+          filters:
+            branches:
+              only:
+                - master
+      - build_tag:
+          filters:
+            tags:
+              only: /^v.*/
