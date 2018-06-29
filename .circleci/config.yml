@@ -3,7 +3,7 @@ jobs:
   build_latest:
     working_directory: /app
     docker:
-      - image: docker:17.09.0-ce
+      - image: docker:17.09.0-ce-git
     steps:
       - checkout
       - setup_remote_docker
@@ -15,7 +15,7 @@ jobs:
   build_tag:
     working_directory: /app
     docker:
-      - image: docker:17.09.0-ce
+      - image: docker:17.09.0-ce-git
     steps:
       - checkout
       - setup_remote_docker
